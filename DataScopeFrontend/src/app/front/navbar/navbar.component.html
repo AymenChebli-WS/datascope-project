@@ -1,0 +1,21 @@
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img class="logoTool" src="assets/images/DataScopeLogoWhite.png" alt="Logo">
+      <span class="example-spacer"></span>
+      <div *ngIf="isLoggedIn; else loggedOut">
+      <button mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon" [matMenuTriggerFor]="menu">
+        <mat-icon>perm_identity</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/profile']"><mat-icon>streetview</mat-icon> Profile</button>
+        <button mat-menu-item (click)="logout()"><mat-icon>subdirectory_arrow_left</mat-icon> Logout</button>
+      </mat-menu>
+      </div>
+      <ng-template #loggedOut>
+      <button mat-raised-button color="accent" class="login-button" aria-label="Login" [routerLink]="['/login']">
+        <mat-icon>person</mat-icon> Log in
+      </button>
+    </ng-template>
+    </mat-toolbar>

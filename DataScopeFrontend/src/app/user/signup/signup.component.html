@@ -1,0 +1,93 @@
+<div class="center-container">
+    <div>
+      <img class="logo-image" src="assets/images/DataScopeLogo.png" alt="Logo">
+    </div>
+    <mat-card>
+      <mat-card-header class="header-center">
+        <mat-card-title>Sign Up</mat-card-title>
+        <mat-card-subtitle>Fill in the fields below to create an account</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- Form content goes here -->
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          <mat-grid-list cols="2" rowHeight="100px">
+            <mat-grid-tile colspan="1" rowspan="1">
+              <mat-form-field>
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" formControlName="firstName" id="firstName">
+              </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile colspan="1" rowspan="1">
+              <mat-form-field>
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" formControlName="lastName" id="lastName">
+              </mat-form-field>
+            </mat-grid-tile>
+  
+            <mat-grid-tile colspan="1" rowspan="1">
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="email" id="email">
+              </mat-form-field>
+            </mat-grid-tile>
+  
+            <mat-grid-tile colspan="1" rowspan="1">
+              <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" id="password">
+              </mat-form-field>
+            </mat-grid-tile>
+        
+            <mat-grid-tile colspan="2" rowspan="1">
+              <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input matInput type="text" formControlName="address" id="address">
+              </mat-form-field>
+            </mat-grid-tile>
+  
+            
+            <mat-grid-tile colspan="1" rowspan="1">
+              <mat-form-field>
+                <mat-label>Birthday</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthDate" id="birthDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile colspan="1" rowspan="1">
+                <mat-form-field>
+                  <mat-label>Phone Number</mat-label>
+                  <input matInput type="text" formControlName="phoneNumber" id="phoneNumber">
+                </mat-form-field>
+              </mat-grid-tile>
+  
+            <!-- ======Image Upload code===== -->
+            <!-- <mat-grid-tile colspan="2" rowspan="2">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-title>Image</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <input type="file" id="image" (change)="onImageSelected($event)" accept="image/*">
+                  <img *ngIf="selectedImage" [src]="selectedImage" class="preview-image" alt="Preview">
+                </mat-card-content>
+              </mat-card>
+            </mat-grid-tile> -->
+            
+  
+          </mat-grid-list>
+  
+          
+          
+          <mat-card-actions>
+            <button mat-raised-button color="accent" type="submit">Sign Up</button>
+            
+          </mat-card-actions>
+        </form>
+        <button mat-button [routerLink]="['/login']">I already have an account.</button>
+      </mat-card-content>
+    </mat-card>
+</div>
+  
