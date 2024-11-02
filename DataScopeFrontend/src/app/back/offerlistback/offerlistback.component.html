@@ -1,13 +1,13 @@
-<app-navbar></app-navbar>
+<app-navbarback></app-navbarback>
 <div class="main-container">
   <div class="sidebar-container">
-    <app-sidebar></app-sidebar>
+    <app-sidebarback></app-sidebarback>
   </div>
   <div class="content-container">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Offer List</mat-card-title>
-        <mat-card-subtitle>This is the offers list. Here you can find the different imported jobs or internship offers, view more info about them, or add new ones.</mat-card-subtitle>
+        <mat-card-title>All Imported Offers</mat-card-title>
+        <mat-card-subtitle>This is the offers list imported by all users.</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <button mat-flat-button color="accent" class="ze-button" (click)="openDialogImport()"><mat-icon>library_add</mat-icon>Import Offer</button>
@@ -20,8 +20,8 @@
         <div class="mat-elevation-z8">
           <table mat-table [dataSource]="dataSource" matSort>
         
-            <!-- Type Column -->
-            <ng-container matColumnDef="type">
+             <!-- Type Column -->
+             <ng-container matColumnDef="type">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
               <td mat-cell *matCellDef="let offer"  class="type-cell"> {{offer.type}} </td>
             </ng-container>

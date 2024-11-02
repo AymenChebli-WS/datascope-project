@@ -55,26 +55,18 @@
   align-items: center;
   } */
 
-/* Disable selection for all cells */
-.mat-cell {
-  user-select: none; /* Disable text selection for all table cells */
-}
+  
+  canvas {
+    max-width: 100%; /* Make the canvas take the full width of its container */
+    max-height: 300px; /* Set a maximum height */
+  }
 
-.email-cell {
-  user-select: text; /* Disable text selection for all table cells */
-  position: relative;
-}
-
-.email-cell span::after {
-  content: " "; /* Adds a space after each email */
-}
-
-
-/* Enable selection for the active column (to be controlled by TypeScript) */
-.type-cell, .enterprise-cell, .actions-cell {
-  user-select: none; /* Will be dynamically changed */
-}
-
+  .skillchart {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  
 
 
 

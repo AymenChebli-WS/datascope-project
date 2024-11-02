@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,6 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent {
   loginForm: FormGroup;
   responseMessage: any;
+  user: any;
+  userEmail: any;
 
   constructor(private fb: FormBuilder, private router: Router, private userService: UserService, private snackbarService: SnackbarService) {
     this.loginForm = this.fb.group({
@@ -28,7 +31,24 @@ export class LoginComponent {
     }
     this.userService.login(data).subscribe((response: any) => {
       localStorage.setItem('token', response.token);
-      this.router.navigate(['/offer-list']);
+
+      // Check if user is Admin
+      this.userEmail = this.userService.getUserEmailFromToken();
+      this.userService.getUserInfo(this.userEmail).subscribe(
+        (data: User) => {
+          this.user = data;
+          if(this.user.role == "ADMIN") {
+            this.router.navigate(['/back/user-list']);
+          } else {
+            this.router.navigate(['/offer-list']);
+          }
+          console.log('User data retrieved:', this.user);
+        },
+        (error) => {
+          console.error('Error retrieving user:', error);
+        }
+        );
+      
     }, (error) => {
       if(error.error?.message){
         this.responseMessage = error.error?.message;

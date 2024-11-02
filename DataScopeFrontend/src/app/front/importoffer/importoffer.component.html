@@ -8,6 +8,11 @@
   <mat-icon>arrow_upward</mat-icon> Upload File
 </button>
 
+<div *ngIf="loading" class="loading-bar">
+  Extracting and Analyzing submitted data through AI.
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
 </div>

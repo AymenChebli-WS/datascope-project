@@ -54,28 +54,3 @@
   justify-content: space-between;
   align-items: center;
   } */
-
-/* Disable selection for all cells */
-.mat-cell {
-  user-select: none; /* Disable text selection for all table cells */
-}
-
-.email-cell {
-  user-select: text; /* Disable text selection for all table cells */
-  position: relative;
-}
-
-.email-cell span::after {
-  content: " "; /* Adds a space after each email */
-}
-
-
-/* Enable selection for the active column (to be controlled by TypeScript) */
-.type-cell, .enterprise-cell, .actions-cell {
-  user-select: none; /* Will be dynamically changed */
-}
-
-
-
-
-

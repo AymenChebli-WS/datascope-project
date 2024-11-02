@@ -47,6 +47,8 @@ export class OfferlistComponent implements AfterViewInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }
+
+    // this.setupColumnSelection();
   }
 
   applyFilter(event: Event) {
@@ -64,6 +66,58 @@ export class OfferlistComponent implements AfterViewInit {
       data: offer
     });
   }
+
+  setupColumnSelection() {
+    const columns = ['type', 'enterprise', 'email', 'actions'];
+  
+    // Initially disable selection for all cells
+    columns.forEach((column) => {
+      const cells = document.querySelectorAll(`.${column}-cell`);
+      console.log("the cells are: "+cells);
+      cells.forEach((cell) => {
+        (cell as HTMLElement).style.userSelect = 'none'; // Disable selection initially
+      });
+    });
+  
+    columns.forEach((column) => {
+      const cells = document.querySelectorAll(`.${column}-cell`);
+  
+      cells.forEach((cell) => {
+        const htmlCell = cell as HTMLElement;
+        // Enable selection on the clicked column
+        htmlCell.addEventListener('mousedown', (event: MouseEvent) => {
+          console.log(`Mouse down on column: ${column}`); // Debugging line
+          event.preventDefault(); // Prevent default selection behavior
+          // Disable selection for all other columns
+          columns.forEach((otherColumn) => {
+            if (otherColumn !== column) {
+              const otherCells = document.querySelectorAll(`.${otherColumn}-cell`);
+              otherCells.forEach((otherCell) => {
+                (otherCell as HTMLElement).style.userSelect = 'none'; // Disable selection
+              });
+            }
+          });
+  
+          // Enable selection on the current column
+          cells.forEach((selectedCell) => {
+            (selectedCell as HTMLElement).style.userSelect = 'text'; // Enable selection
+          });
+        });
+  
+        // Reset selection when the mouse is released
+        htmlCell.addEventListener('mouseup', () => {
+          // Reset all selections
+          columns.forEach((otherColumn) => {
+            const otherCells = document.querySelectorAll(`.${otherColumn}-cell`);
+            otherCells.forEach((otherCell) => {
+              (otherCell as HTMLElement).style.userSelect = 'none'; // Disable selection
+            });
+          });
+        });
+      });
+    });
+  }
+  
 
   openDialogImport() {
     this.dialog.open(ImportofferComponent);

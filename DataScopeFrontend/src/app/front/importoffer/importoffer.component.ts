@@ -5,6 +5,8 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
 import * as pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
 import { MatDialogRef } from '@angular/material/dialog';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user.model';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
@@ -16,8 +18,11 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 export class ImportofferComponent {
   responseMessage: any;
   extractedText: string = '';
+  user: any;
+  userEmail: any;
+  loading: boolean = false;
 
-  constructor(private router: Router, private offerService: OfferService, private snackbarService: SnackbarService, private dialogRef: MatDialogRef<ImportofferComponent>) {}
+  constructor(private router: Router, private offerService: OfferService, private userService: UserService ,private snackbarService: SnackbarService, private dialogRef: MatDialogRef<ImportofferComponent>) {}
 
   // Trigger file input click
   triggerFileInput() {
@@ -43,6 +48,7 @@ export class ImportofferComponent {
   }
   
   extractTextFromPDF(typedArray: Uint8Array) {
+    this.loading = true;
     pdfjsLib.getDocument(typedArray).promise.then((pdf: any) => {
       const maxPages = pdf.numPages;
       let extractedText = '';
@@ -57,14 +63,17 @@ export class ImportofferComponent {
             var data = pageText;
             this.offerService.generateData(data).subscribe((response: any) => {
               console.log('Generated Data:', response);
+              this.loading = false;
               this.dialogRef.close();
-              this.router.navigate(['/offer-list']);
+              this.checkIfAdmin();
               window.location.reload();
             }, (error) => {
               if(error.error?.message){
+                this.loading = false;
                 this.responseMessage = error.error?.message;
               }
               else {
+                this.loading = false;
                 this.responseMessage = "Not getting a response."
               }
               this.snackbarService.openSnackBar(this.responseMessage, '')
@@ -73,6 +82,7 @@ export class ImportofferComponent {
         });
       }
     }).catch((error: any) => {
+      this.loading = false;
       console.error('Error extracting text from PDF:', error);
     });
   }
@@ -91,5 +101,23 @@ export class ImportofferComponent {
       }
       this.snackbarService.openSnackBar(this.responseMessage, '')
     })
+  }
+
+  checkIfAdmin() {
+    this.userEmail = this.userService.getUserEmailFromToken();
+      this.userService.getUserInfo(this.userEmail).subscribe(
+        (data: User) => {
+          this.user = data;
+          if(this.user.role == "ADMIN") {
+            this.router.navigate(['/back/offer-list']);
+          } else {
+            this.router.navigate(['/offer-list']);
+          }
+          console.log('User data retrieved:', this.user);
+        },
+        (error) => {
+          console.error('Error retrieving user:', error);
+        }
+        );
   }
 }

@@ -62,4 +62,22 @@ export class UserService {
     return email;
   }
 
+  getUsers(): Observable<User[]> {
+    const authToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${authToken}`,
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<User[]>(`${this.apiUrl}/retrieve-all-users`, { headers });
+  }
+
+  deleteUser(userId: number): Observable<void> {
+    const authToken = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${authToken}`,
+      'Content-Type': 'application/json'
+    });
+    return this.http.get<void>(`${this.apiUrl}/delete-user/${userId}`, { headers });
+  }
+
 }

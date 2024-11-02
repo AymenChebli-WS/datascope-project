@@ -33,6 +33,15 @@ import { OfferinfoComponent } from './front/offerinfo/offerinfo.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatMenuModule} from '@angular/material/menu';
+import { OfferlistbackComponent } from './back/offerlistback/offerlistback.component';
+import { UserlistComponent } from './back/userlist/userlist.component';
+import { UserinfoComponent } from './back/userinfo/userinfo.component';
+import { SidebarbackComponent } from './back/sidebarback/sidebarback.component';
+import { NavbarbackComponent } from './back/navbarback/navbarback.component';
+import { StatisticsComponent } from './front/statistics/statistics.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { StatsbackComponent } from './back/statsback/statsback.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +55,13 @@ import {MatMenuModule} from '@angular/material/menu';
     OfferlistComponent,
     ImportofferComponent,
     OfferinfoComponent,
+    OfferlistbackComponent,
+    UserlistComponent,
+    UserinfoComponent,
+    SidebarbackComponent,
+    NavbarbackComponent,
+    StatisticsComponent,
+    StatsbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +85,9 @@ import {MatMenuModule} from '@angular/material/menu';
     MatPaginatorModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
