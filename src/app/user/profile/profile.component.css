@@ -1,0 +1,63 @@
+.main-container {
+    display: flex;
+    height: calc(100vh - 64px); /* Adjust height minus the navbar height */
+  }
+  
+  .sidebar-container {
+    width: 250px; /* Adjust width as needed */
+    background-color: #ffffff;
+    border-right: 1px solid #ddd;
+  }
+  
+  .content-container {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #ececec;
+  }
+
+  .tile-container {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* height: 100%; */
+}
+
+.profile-image {
+  width: 200px; /* Adjust the size of the profile image */
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover; /* Ensure the image covers the entire area */
+  margin-bottom: 10px;
+}
+
+.user-name {
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  font-weight: bold; /* Thin */
+  font-size: x-large;
+  margin-top: 10px;
+}
+
+.subtext {
+  display: flex;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  font-weight: bold; /* Thin */
+  font-size: medium;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.ex-spacer {
+  margin-right: 10px;
+}
+
+.info-section {
+  width: 100%;
+}
+
+.user-action-row {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+}

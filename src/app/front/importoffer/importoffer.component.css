@@ -1,0 +1,9 @@
+.upload-button {
+    margin-left: 30px;
+    background-color: green;
+  color: white;
+}
+
+.loading-bar {
+  margin: 10px;
+}

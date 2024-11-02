@@ -1,0 +1,75 @@
+/* Ensure the toolbar is positioned on top */
+mat-toolbar {
+    /* position: fixed; */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* High z-index to ensure it's on top */
+    height: 64px; /* Toolbar height, adjust as needed */
+    background-color: #ff2828;
+  }
+  
+  /* Main content area to allow space for the toolbar */
+  .main-content {
+    position: relative;
+    padding-top: 64px; /* Height of the toolbar (adjust if needed) */
+    height: calc(100vh - 64px); /* Fill remaining viewport height */
+  }
+  
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area */
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+  
+  .logoTool {
+    max-width: 180px; /* Adjust as needed */
+  }
+
+  .menu-icon {
+    max-width: 180px; /* Adjust as needed */
+  }
+
+  .logo {
+    max-width: 100%; /* Adjust as needed */
+  }
+  
+  .text-container {
+    max-width: 600px; /* Adjust as needed */
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .text-container h1 {
+    font-size: 2.5rem; /* Adjust as needed */
+    margin: 0;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adjust shadow as needed */
+  }
+  
+  .text-container p {
+    font-size: 1rem; /* Adjust as needed */
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Adjust shadow as needed */
+  }
+  
+  
