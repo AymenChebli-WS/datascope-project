@@ -1,5 +1,6 @@
 package com.datascope.datascopebackend.control;
 
+import com.datascope.datascopebackend.entity.Offer;
 import com.datascope.datascopebackend.entity.User;
 import com.datascope.datascopebackend.service.UserServiceImpl;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -53,6 +55,27 @@ public class UserRestController {
     public User retrieveUser(@PathVariable("email") String email) {
         User user = userService.retrieveUser(email);
         System.out.println("The extracted user is: " + user.getEmail());
+        return user;
+    }
+
+    // http://localhost:8089/datascope/user/retrieve-all-users
+    @GetMapping("/retrieve-all-users")
+    public List<User> getUsers() {
+        List<User> listUsers = userService.retrieveAllUsers();
+        return listUsers;
+    }
+
+    // http://localhost:8089/datascope/user/delete-user/{user-id}
+    @GetMapping("/delete-user/{user-id}")
+    public ResponseEntity<Void> deleteUserUsingGet(@PathVariable("user-id") Long userId) {
+        userService.removeUser(userId);
+        return ResponseEntity.ok().build();
+    }
+
+    // http://localhost:8089/datascope/user/modify-user
+    @PutMapping("/modify-user")
+    public User modifyUser(@RequestBody User c) {
+        User user = userService.modifyUser(c);
         return user;
     }
 }

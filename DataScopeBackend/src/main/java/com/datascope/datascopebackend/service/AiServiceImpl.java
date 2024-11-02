@@ -28,6 +28,8 @@ public class AiServiceImpl implements IAiService{
                 "Do not answer with anything besides the json code. No code block markers or delimiters. The json code should be like this: " +
                 "{ \"type\": (Internship or Job), \"email\": (the email of the offeror), \"enterprise\": (the offeror enterprise name), \"skills\": (a list of the required skills)," +
                 "\"tasks\": (a list of the tasks that need to be accomplished) } . " +
+                "For the email address, ensure all spaces are removed, even between domain parts like 'com' or 'org', but keep any dashes, dots, and other necessary symbols intact. For example, 'te st - email @ broken . co m' should be 'test-email@broken.com' with absolutely no spaces." +
+                "Additionally, if the email ends with '@esprit.tn', check if there is any other email present in the text and use that email instead. If no other email is found, leave the email field empty in the JSON." +
                 "This is the extracted text: ";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();

@@ -1,5 +1,6 @@
 package com.datascope.datascopebackend.service;
 
+import com.datascope.datascopebackend.entity.Offer;
 import com.datascope.datascopebackend.entity.Role;
 import com.datascope.datascopebackend.entity.User;
 import com.datascope.datascopebackend.repository.UserRepository;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -110,5 +112,19 @@ public class UserServiceImpl implements IUserService{
     @Override
     public User retrieveUser(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public List<User> retrieveAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void removeUser(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
+    @Override
+    public User modifyUser(User user) {
+        return userRepository.save(user);
     }
 }
